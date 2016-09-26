@@ -1,9 +1,17 @@
 package vn.edu.fpt.mola.app.dummy;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import vn.edu.fpt.mola.app.model.Chapter;
+import vn.edu.fpt.mola.app.model.Course;
+import vn.edu.fpt.mola.app.model.Language;
+import vn.edu.fpt.mola.app.model.Lesson;
+import vn.edu.fpt.mola.app.model.enumerate.CourseStatus;
+import vn.edu.fpt.mola.app.model.enumerate.Degree;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -16,34 +24,93 @@ public class DummyContent {
     /**
      * An array of sample (dummy) items.
      */
-    public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+    public static final List<Course> COURSE_LIST = new ArrayList<Course>();
+    public static final List<Chapter> CHAPTER_LIST = new ArrayList<Chapter>();
+    public static final List<Lesson> LESSON_LIST = new ArrayList<Lesson>();
 
     /**
      * A map of sample (dummy) items, by ID.
      */
-    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
+    public static final Map<Long, Course> COURSE_MAP = new HashMap<Long, Course>();
+    public static final Map<Long, Chapter> CHAPTER_MAP = new HashMap<Long, Chapter>();
+    public static final Map<Long, Lesson> LESSON_MAP = new HashMap<Long, Lesson>();
 
     private static final int COUNT = 25;
 
     static {
         // Add some sample items.
         for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
+            addCourse(createDummyCourse("Course", i));
+            addLesson(createDummyLesson("Lesson", i));
+            addChapter(createDummyChapter("Chapter", i));
         }
     }
 
-    private static void addItem(DummyItem item) {
-        ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
+    private static void addCourse(Course course) {
+        COURSE_LIST.add(course);
+        COURSE_MAP.put(course.getId(), course);
     }
 
-    private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "Course " + position, makeDetails(position));
+    private static void addChapter(Chapter chapter) {
+        CHAPTER_LIST.add(chapter);
+        CHAPTER_MAP.put(chapter.getId(), chapter);
+        for (Lesson l : LESSON_LIST) {
+            chapter.addLesson(l);
+        }
     }
 
-    private static String makeDetails(int position) {
+    private static void addLesson(Lesson lesson) {
+        LESSON_LIST.add(lesson);
+        LESSON_MAP.put(lesson.getId(), lesson);
+    }
+
+    private static void addItem(
+            List<DummyItem> dummyItemList,
+            Map<String, DummyItem> dummyItemMap,
+            DummyItem item) {
+        dummyItemList.add(item);
+        dummyItemMap.put(item.id, item);
+    }
+
+    private static Course createDummyCourse(String name, int position) {
+        Course c = new Course();
+        c.setId(position);
+        c.setTitle(name);
+        c.setDegree(Degree.BEGINNER);
+        c.setCreateDate(new Date());
+        Language english = new Language();
+        english.setId(57);
+        english.setEnglishName("English");
+        c.setLanguage(english);
+        c.setState(CourseStatus.DRAFT);
+        c.setDescription(makeDetails("Course", position));
+        return c;
+    }
+
+    private static Chapter createDummyChapter(String name, int position) {
+        Chapter c = new Chapter();
+        c.setId(position);
+        c.setTitle(name);
+        c.setDescription(makeDetails("Chapter", position));
+        return c;
+    }
+
+    private static Lesson createDummyLesson(String name, int position) {
+        Lesson l = new Lesson();
+        l.setId(position);
+        l.setTitle(name);
+        l.setDescription(makeDetails("Lesson", position));
+        l.setDuration(60 * 15);
+        return l;
+    }
+
+    private static DummyItem createDummyItem(String name, int position) {
+        return new DummyItem(String.valueOf(position), "Course " + position, makeDetails("Item", position));
+    }
+
+    private static String makeDetails(String name, int position) {
         StringBuilder builder = new StringBuilder();
-        builder.append("Details about Course: ").append(position);
+        builder.append("Details about " + name + ": ").append(position);
         for (int i = 0; i < position; i++) {
             builder.append("\nMore details information here.");
         }

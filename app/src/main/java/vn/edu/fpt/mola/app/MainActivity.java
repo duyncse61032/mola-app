@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import vn.edu.fpt.mola.app.entity.Role;
-import vn.edu.fpt.mola.app.entity.UserPrincipal;
+import vn.edu.fpt.mola.app.model.Role;
+import vn.edu.fpt.mola.app.model.UserPrincipal;
+import vn.edu.fpt.mola.app.view.learner.MainLearner;
+import vn.edu.fpt.mola.app.view.teacher.MainTeacher;
 
 public class MainActivity extends AppCompatActivity {
 

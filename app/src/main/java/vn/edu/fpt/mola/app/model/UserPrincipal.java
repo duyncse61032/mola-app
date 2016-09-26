@@ -1,9 +1,9 @@
-package vn.edu.fpt.mola.app.entity;
+package vn.edu.fpt.mola.app.model;
 
 import java.util.Date;
 import java.util.List;
 
-import vn.edu.fpt.mola.app.entity.enumerate.Gender;
+import vn.edu.fpt.mola.app.model.enumerate.Gender;
 
 /**
  * Created by phuctran93 on 9/20/2016.

@@ -1,11 +1,10 @@
-package vn.edu.fpt.mola.app;
+package vn.edu.fpt.mola.app.view.teacher;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +17,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import vn.edu.fpt.mola.app.R;
 import vn.edu.fpt.mola.app.dummy.DummyContent;
+import vn.edu.fpt.mola.app.model.Course;
 
 import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
 
@@ -51,8 +52,7 @@ public class CourseListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(CourseListActivity.this, CourseCreationActivity.class));
             }
         });
         // Show the Up button in the action bar.
@@ -92,15 +92,15 @@ public class CourseListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+        recyclerView.setAdapter(new CourseRecyclerViewAdapter(DummyContent.COURSE_LIST));
     }
 
-    public class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+    public class CourseRecyclerViewAdapter
+            extends RecyclerView.Adapter<CourseRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<Course> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+        public CourseRecyclerViewAdapter(List<Course> items) {
             mValues = items;
         }
 
@@ -114,15 +114,15 @@ public class CourseListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.mIdView.setText(Long.toString(mValues.get(position).getId()));
+            holder.mContentView.setText(mValues.get(position).getTitle());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(CourseDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        arguments.putLong(CourseDetailFragment.ARG_ITEM_ID, holder.mItem.getId());
                         CourseDetailFragment fragment = new CourseDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -131,7 +131,7 @@ public class CourseListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, CourseDetailActivity.class);
-                        intent.putExtra(CourseDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        intent.putExtra(CourseDetailFragment.ARG_ITEM_ID, holder.mItem.getId());
 
                         context.startActivity(intent);
                     }
@@ -148,7 +148,7 @@ public class CourseListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
+            public Course mItem;
 
             public ViewHolder(View view) {
                 super(view);

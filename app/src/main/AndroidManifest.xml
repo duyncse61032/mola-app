@@ -35,7 +35,7 @@
                 android:value="vn.edu.fpt.mola.app.LoginActivity" />
         </activity>
         <activity
-            android:name=".CourseListActivity"
+            android:name=".view.teacher.CourseListActivity"
             android:label="@string/title_course_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -44,13 +44,31 @@
                 android:value="vn.edu.fpt.mola.app.MainActivity" />
         </activity>
         <activity
-            android:name=".CourseDetailActivity"
+            android:name=".view.teacher.CourseDetailActivity"
             android:label="@string/title_course_detail"
-            android:parentActivityName=".CourseListActivity"
+            android:parentActivityName=".view.teacher.CourseListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="vn.edu.fpt.mola.app.CourseListActivity" />
+                android:value="vn.edu.fpt.mola.app.view.teacher.CourseListActivity" />
+        </activity>
+        <activity
+            android:name=".view.teacher.CourseCreationActivity"
+            android:label="@string/title_activity_course_creation"
+            android:parentActivityName=".view.teacher.CourseListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vn.edu.fpt.mola.app.view.teacher.CourseListActivity" />
+        </activity>
+        <activity
+            android:name=".view.teacher.ChapterCreationActivity"
+            android:label="@string/title_activity_chapter_creation"
+            android:parentActivityName=".view.teacher.CourseDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vn.edu.fpt.mola.app.view.teacher.CourseDetailActivity" />
         </activity>
     </application>
 

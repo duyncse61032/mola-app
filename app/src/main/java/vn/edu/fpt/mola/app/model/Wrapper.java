@@ -1,4 +1,4 @@
-package vn.edu.fpt.mola.app.entity;
+package vn.edu.fpt.mola.app.model;
 
 import java.util.ArrayList;
 import java.util.List;

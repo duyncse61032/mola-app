@@ -1,4 +1,4 @@
-package vn.edu.fpt.mola.app;
+package vn.edu.fpt.mola.app.view.teacher;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import vn.edu.fpt.mola.app.R;
 
 public class MainTeacher extends Fragment {
 

@@ -10,7 +10,7 @@ import okhttp3.Cookie;
 import okhttp3.CookieJar;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
-import vn.edu.fpt.mola.app.entity.UserPrincipal;
+import vn.edu.fpt.mola.app.model.UserPrincipal;
 
 /**
  * Created by phuctran93 on 9/24/2016.

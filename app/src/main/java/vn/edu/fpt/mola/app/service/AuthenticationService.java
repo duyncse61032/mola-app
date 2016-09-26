@@ -11,8 +11,8 @@ import java.io.IOException;
 
 import okhttp3.Response;
 import vn.edu.fpt.mola.app.MolaApp;
-import vn.edu.fpt.mola.app.entity.UserForm;
-import vn.edu.fpt.mola.app.entity.UserPrincipal;
+import vn.edu.fpt.mola.app.model.UserForm;
+import vn.edu.fpt.mola.app.model.UserPrincipal;
 
 /**
  * Created by phuctran93 on 9/20/2016.

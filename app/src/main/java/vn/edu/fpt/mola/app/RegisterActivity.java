@@ -14,9 +14,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import vn.edu.fpt.mola.app.entity.Language;
-import vn.edu.fpt.mola.app.entity.Role;
-import vn.edu.fpt.mola.app.entity.UserForm;
+import vn.edu.fpt.mola.app.model.Language;
+import vn.edu.fpt.mola.app.model.Role;
+import vn.edu.fpt.mola.app.model.UserForm;
 import vn.edu.fpt.mola.app.service.AuthenticationService;
 
 public class RegisterActivity extends AppCompatActivity {

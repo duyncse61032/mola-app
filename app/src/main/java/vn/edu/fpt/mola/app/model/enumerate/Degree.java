@@ -1,4 +1,4 @@
-package vn.edu.fpt.mola.app.entity.enumerate;
+package vn.edu.fpt.mola.app.model.enumerate;
 
 public enum Degree
 {

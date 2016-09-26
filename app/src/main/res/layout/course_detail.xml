@@ -1,9 +1,32 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/course_detail"
-    style="?android:attr/textAppearanceLarge"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:textIsSelectable="true"
-    tools:context="vn.edu.fpt.mola.app.CourseDetailFragment" />
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="vn.edu.fpt.mola.app.view.teacher.CourseDetailFragment" >
+
+    <TextView
+        android:id="@+id/course_detail"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:textIsSelectable="true"/>
+
+    <ExpandableListView
+        android:id="@+id/course_outline_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ExpandableListView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/chapter_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:layoutManager="LinearLayoutManager"
+        tools:listitem="@layout/chapter_list_content" />
+</LinearLayout>

@@ -1,4 +1,4 @@
-package vn.edu.fpt.mola.app.entity;
+package vn.edu.fpt.mola.app.model;
 
 public class Address
 {
