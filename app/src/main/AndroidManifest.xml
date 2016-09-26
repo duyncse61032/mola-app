@@ -34,6 +34,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="vn.edu.fpt.mola.app.LoginActivity" />
         </activity>
+        <activity
+            android:name=".CourseListActivity"
+            android:label="@string/title_course_list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vn.edu.fpt.mola.app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CourseDetailActivity"
+            android:label="@string/title_course_detail"
+            android:parentActivityName=".CourseListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vn.edu.fpt.mola.app.CourseListActivity" />
+        </activity>
     </application>
 
 </manifest>
