@@ -1,6 +1,7 @@
 package vn.edu.fpt.mola.app.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import vn.edu.fpt.mola.app.entity.enumerate.Gender;
 
@@ -21,6 +22,9 @@ public class UserPrincipal {
     private Gender gender;
     private Date birthday;
     private Address address;
+    private List<Language> learningLanguageList;
+    private List<Language> teachingLanguageList;
+    private List<Role> roleList;
 
     public long getId() {
         return id;
@@ -108,5 +112,29 @@ public class UserPrincipal {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public List<Language> getLearningLanguageList() {
+        return learningLanguageList;
+    }
+
+    public void setLearningLanguageList(List<Language> learningLanguageList) {
+        this.learningLanguageList = learningLanguageList;
+    }
+
+    public List<Language> getTeachingLanguageList() {
+        return teachingLanguageList;
+    }
+
+    public void setTeachingLanguageList(List<Language> teachingLanguageList) {
+        this.teachingLanguageList = teachingLanguageList;
+    }
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
     }
 }

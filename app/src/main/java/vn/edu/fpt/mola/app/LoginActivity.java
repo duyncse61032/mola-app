@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import vn.edu.fpt.mola.app.service.AnthentcationService;
+import vn.edu.fpt.mola.app.service.AuthenticationService;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         AsyncTask<String, Void, Boolean> loginTask = new AsyncTask<String, Void, Boolean>() {
             @Override
             protected Boolean doInBackground(String... strings) {
-                return new AnthentcationService(LoginActivity.this).login(username, password);
+                return new AuthenticationService(LoginActivity.this).login(username, password);
             }
 
             @Override
@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onLoginSuccess() {
-        Intent intent = new Intent(this, TeacherHomeActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -107,6 +107,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToRegister() {
-
+        startActivity(new Intent(this, RegisterActivity.class));
     }
 }
