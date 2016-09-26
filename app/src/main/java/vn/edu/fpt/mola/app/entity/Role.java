@@ -32,4 +32,13 @@ public class Role implements Serializable
     {
         this.title = title;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Role)) {
+            return false;
+        }
+        Role castOther = (Role) obj;
+        return this.id == castOther.id;
+    }
 }

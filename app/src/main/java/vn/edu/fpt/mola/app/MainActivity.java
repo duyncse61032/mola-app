@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import vn.edu.fpt.mola.app.entity.Role;
 import vn.edu.fpt.mola.app.entity.UserPrincipal;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,15 +30,31 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        UserPrincipal user = ((MolaApp)getApplication()).getUser();
+        if (user == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+        } else if(savedInstanceState == null && user.getRoleList() != null) {
+            Role teacherRole = new Role();
+            teacherRole.setId(1);
+            Role learnerRole = new Role();
+            learnerRole.setId(2);
+            if (user.getRoleList().contains(teacherRole)) {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.teacher_home_container, new MainTeacher())
+                        .commit();
+            }
+            if (user.getRoleList().contains(learnerRole)) {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.learner_home_container, new MainLearner())
+                        .commit();
+            }
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        UserPrincipal user = ((MolaApp)getApplication()).getUser();
-        if (user == null) {
-            startActivity(new Intent(this, LoginActivity.class));
-        }
     }
 
     @Override
