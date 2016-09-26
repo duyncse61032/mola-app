@@ -1,4 +1,4 @@
-package vn.edu.fpt.mola.app.view.learner;
+package vn.edu.fpt.mola.app.controller.learner;
 
 
 import android.os.Bundle;

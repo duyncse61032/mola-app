@@ -1,4 +1,4 @@
-package vn.edu.fpt.mola.app.view.teacher;
+package vn.edu.fpt.mola.app.controller.teacher;
 
 import android.app.Activity;
 import android.content.Context;

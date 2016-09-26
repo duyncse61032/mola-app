@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="vn.edu.fpt.mola.app.view.teacher.CourseListActivity">
+    tools:context="vn.edu.fpt.mola.app.controller.teacher.CourseListActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="vn.edu.fpt.mola.app.view.teacher.CourseDetailFragment" >
+    tools:context="vn.edu.fpt.mola.app.controller.teacher.CourseDetailFragment" >
 
     <TextView
         android:id="@+id/course_detail"

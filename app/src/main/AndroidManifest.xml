@@ -35,7 +35,7 @@
                 android:value="vn.edu.fpt.mola.app.LoginActivity" />
         </activity>
         <activity
-            android:name=".view.teacher.CourseListActivity"
+            android:name=".controller.teacher.CourseListActivity"
             android:label="@string/title_course_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -44,31 +44,31 @@
                 android:value="vn.edu.fpt.mola.app.MainActivity" />
         </activity>
         <activity
-            android:name=".view.teacher.CourseDetailActivity"
+            android:name=".controller.teacher.CourseDetailActivity"
             android:label="@string/title_course_detail"
-            android:parentActivityName=".view.teacher.CourseListActivity"
+            android:parentActivityName=".controller.teacher.CourseListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="vn.edu.fpt.mola.app.view.teacher.CourseListActivity" />
+                android:value="vn.edu.fpt.mola.app.controller.teacher.CourseListActivity" />
         </activity>
         <activity
-            android:name=".view.teacher.CourseCreationActivity"
+            android:name=".controller.teacher.CourseCreationActivity"
             android:label="@string/title_activity_course_creation"
-            android:parentActivityName=".view.teacher.CourseListActivity"
+            android:parentActivityName=".controller.teacher.CourseListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="vn.edu.fpt.mola.app.view.teacher.CourseListActivity" />
+                android:value="vn.edu.fpt.mola.app.controller.teacher.CourseListActivity" />
         </activity>
         <activity
-            android:name=".view.teacher.ChapterCreationActivity"
+            android:name=".controller.teacher.ChapterCreationActivity"
             android:label="@string/title_activity_chapter_creation"
-            android:parentActivityName=".view.teacher.CourseDetailActivity"
+            android:parentActivityName=".controller.teacher.CourseDetailActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="vn.edu.fpt.mola.app.view.teacher.CourseDetailActivity" />
+                android:value="vn.edu.fpt.mola.app.controller.teacher.CourseDetailActivity" />
         </activity>
     </application>
 

@@ -12,8 +12,8 @@ import android.view.MenuItem;
 
 import vn.edu.fpt.mola.app.model.Role;
 import vn.edu.fpt.mola.app.model.UserPrincipal;
-import vn.edu.fpt.mola.app.view.learner.MainLearner;
-import vn.edu.fpt.mola.app.view.teacher.MainTeacher;
+import vn.edu.fpt.mola.app.controller.learner.MainLearner;
+import vn.edu.fpt.mola.app.controller.teacher.MainTeacher;
 
 public class MainActivity extends AppCompatActivity {
 
