@@ -9,9 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
+import java.util.Date;
+
 import vn.edu.fpt.mola.app.R;
 import vn.edu.fpt.mola.app.dummy.DummyContent;
 import vn.edu.fpt.mola.app.model.Course;
+import vn.edu.fpt.mola.app.model.enumerate.Degree;
 
 public class CourseCreationActivity extends AppCompatActivity {
 
@@ -78,8 +81,32 @@ public class CourseCreationActivity extends AppCompatActivity {
             mSaveAndAddButton.setEnabled(false);
         }
     }
+    private void createCourse() {
+        Course c = new Course();
+        c.setId(DummyContent.COURSE_LIST.size() + 1);
+        c.setTitle(mTitleText.getText().toString());
+        c.setTopic(mTopicText.getText().toString());
+        c.setDescription(mDescriptionText.getText().toString());
+        c.setCreateDate(new Date());
+        switch (mDegreeRadio.getCheckedRadioButtonId()) {
+            case R.id.beginner_degree_radio:
+                c.setDegree(Degree.BEGINNER);
+                break;
+            case R.id.intermediate_degree_radio:
+                c.setDegree(Degree.INTERMEDIATE);
+                break;
+            case R.id.advanced_degree_radio:
+                c.setDegree(Degree.ADVANCED);
+                break;
+        }
+        DummyContent.COURSE_LIST.add(c);
+        DummyContent.COURSE_MAP.put(c.getId(), c);
+    }
 
     private void saveAndAddCourse() {
+
+        createCourse();
+
         this.setResult(RESULT_OK);
         Intent intent = getIntent();
         this.finish();
@@ -87,6 +114,9 @@ public class CourseCreationActivity extends AppCompatActivity {
     }
 
     private void saveCourse() {
+
+        createCourse();
+
         this.setResult(RESULT_OK);
         this.finish();
     }

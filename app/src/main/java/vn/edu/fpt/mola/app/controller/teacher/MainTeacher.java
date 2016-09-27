@@ -13,6 +13,7 @@ import vn.edu.fpt.mola.app.R;
 public class MainTeacher extends Fragment {
 
     private LinearLayout mManageCourseLine;
+    private View mManageTimeFrameLine;
 
     public MainTeacher() {
         // Required empty public constructor
@@ -25,11 +26,19 @@ public class MainTeacher extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main_teacher, container, false);
 
         mManageCourseLine = (LinearLayout) rootView.findViewById(R.id.manage_course_line);
+        mManageTimeFrameLine = (View) rootView.findViewById(R.id.manage_time_frame_line);
+
 
         mManageCourseLine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToManageCourse();
+            }
+        });
+        mManageTimeFrameLine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToManageTimeFrame();
             }
         });
 
@@ -38,5 +47,9 @@ public class MainTeacher extends Fragment {
 
     private void goToManageCourse() {
         startActivity(new Intent(getActivity(), CourseListActivity.class));
+    }
+
+    private void goToManageTimeFrame() {
+        startActivity(new Intent(getActivity(), TimeFrameActivity.class));
     }
 }

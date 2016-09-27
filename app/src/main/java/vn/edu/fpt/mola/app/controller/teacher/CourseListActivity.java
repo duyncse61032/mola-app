@@ -38,6 +38,9 @@ public class CourseListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+    private CourseRecyclerViewAdapter mViewAdapter;
+
+    private static final int CREATE_COURSE_RESULT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +51,11 @@ public class CourseListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.create_course_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CourseListActivity.this, CourseCreationActivity.class));
+                goToCourseCreation();
             }
         });
         // Show the Up button in the action bar.
@@ -74,6 +77,22 @@ public class CourseListActivity extends AppCompatActivity {
         }
     }
 
+    private void goToCourseCreation() {
+        Intent intent = new Intent(this, CourseCreationActivity.class);
+        startActivityForResult(intent, CREATE_COURSE_RESULT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case CREATE_COURSE_RESULT:
+                if (resultCode == RESULT_OK) {
+                    mViewAdapter.notifyDataSetChanged();
+                }
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -92,7 +111,8 @@ public class CourseListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new CourseRecyclerViewAdapter(DummyContent.COURSE_LIST));
+        mViewAdapter = new CourseRecyclerViewAdapter(DummyContent.COURSE_LIST);
+        recyclerView.setAdapter(mViewAdapter);
     }
 
     public class CourseRecyclerViewAdapter

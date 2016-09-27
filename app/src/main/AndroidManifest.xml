@@ -70,6 +70,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="vn.edu.fpt.mola.app.controller.teacher.CourseDetailActivity" />
         </activity>
+        <activity
+            android:name=".controller.teacher.TimeFrameActivity"
+            android:label="@string/title_activity_time_frame"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vn.edu.fpt.mola.app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".controller.teacher.TimeFrameCreationActivity"
+            android:label="@string/title_activity_time_frame_creation"
+            android:parentActivityName=".controller.teacher.TimeFrameActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vn.edu.fpt.mola.app.controller.teacher.TimeFrameActivity" />
+        </activity>
     </application>
 
 </manifest>
