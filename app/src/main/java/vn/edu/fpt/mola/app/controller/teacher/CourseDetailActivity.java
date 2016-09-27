@@ -19,20 +19,14 @@ import vn.edu.fpt.mola.app.R;
  */
 public class CourseDetailActivity extends AppCompatActivity {
 
+    private long courseId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(CourseDetailActivity.this, ChapterCreationActivity.class));
-            }
-        });
 
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
@@ -53,14 +47,32 @@ public class CourseDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putLong(CourseDetailFragment.ARG_ITEM_ID,
-                    getIntent().getLongExtra(CourseDetailFragment.ARG_ITEM_ID, 0));
+            courseId = getIntent().getLongExtra(CourseDetailFragment.ARG_ITEM_ID, -1);
+            arguments.putLong(CourseDetailFragment.ARG_ITEM_ID, courseId);
             CourseDetailFragment fragment = new CourseDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.course_detail_container, fragment)
                     .commit();
         }
+
+        FloatingActionButton editButton = (FloatingActionButton) findViewById(R.id.edit_button);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CourseDetailActivity.this, CourseCreationActivity.class);
+                intent.putExtra(CourseCreationActivity.ARG_ITEM_ID, courseId);
+                startActivity(intent);
+            }
+        });
+
+        FloatingActionButton createChapterButton = (FloatingActionButton) findViewById(R.id.create_chapter_button);
+        createChapterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CourseDetailActivity.this, ChapterCreationActivity.class));
+            }
+        });
     }
 
     @Override

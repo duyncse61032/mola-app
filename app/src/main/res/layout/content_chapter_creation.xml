@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:hint="Chapter Title">
         <EditText
-            android:id="@+id/chapter_title_text"
+            android:id="@+id/title_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"/>
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:hint="Chapter Description">
         <EditText
-            android:id="@+id/chapter_description_text"
+            android:id="@+id/description_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"/>

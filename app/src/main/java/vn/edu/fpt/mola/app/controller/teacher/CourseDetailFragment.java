@@ -156,10 +156,20 @@ public class CourseDetailFragment extends Fragment {
 
             TextView idView = (TextView) convertView.findViewById(R.id.id);
             TextView contentView = (TextView) convertView.findViewById(R.id.content);
-            Chapter chapter = (Chapter) getGroup(chapterIndex);
+            //ImageButton editButton = (ImageButton) convertView.findViewById(R.id.edit_button);
+
+            final Chapter chapter = (Chapter) getGroup(chapterIndex);
             idView.setTypeface(null, Typeface.BOLD);
             idView.setText(Long.toString(chapter.getId()));
             contentView.setText(chapter.getTitle());
+//            editButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent intent = new Intent(getActivity(), ChapterCreationActivity.class);
+//                    intent.putExtra(ChapterCreationActivity.ARG_ITEM_ID, chapter.getId());
+//                    startActivity(intent);
+//                }
+//            });
 
             return convertView;
         }

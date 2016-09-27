@@ -76,7 +76,9 @@ public class DummyContent {
         Course c = new Course();
         c.setId(position);
         c.setTitle(name);
-        c.setDegree(Degree.BEGINNER);
+        if (position % 3 == 0) c.setDegree(Degree.BEGINNER);
+        else if (position % 3 == 1) c.setDegree(Degree.INTERMEDIATE);
+        else if (position % 3 == 2) c.setDegree(Degree.ADVANCED);
         c.setCreateDate(new Date());
         Language english = new Language();
         english.setId(57);
