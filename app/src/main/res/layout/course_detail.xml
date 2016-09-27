@@ -14,12 +14,12 @@
         android:padding="16dp"
         android:textIsSelectable="true"/>
 
-    <ExpandableListView
+    <vn.edu.fpt.mola.app.controller.teacher.NonScrollExpandableListView
         android:id="@+id/course_outline_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ExpandableListView>
+    </vn.edu.fpt.mola.app.controller.teacher.NonScrollExpandableListView>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/chapter_list"

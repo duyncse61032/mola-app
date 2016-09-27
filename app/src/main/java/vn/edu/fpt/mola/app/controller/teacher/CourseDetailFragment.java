@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -44,7 +43,7 @@ public class CourseDetailFragment extends Fragment {
      */
     private Course mItem;
 
-    private ExpandableListView expandableListView;
+    private NonScrollExpandableListView expandableListView;
     private ExpandableListAdapter expandableListAdapter;
 
     /**
@@ -93,7 +92,7 @@ public class CourseDetailFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        expandableListView = (ExpandableListView) view.findViewById(R.id.course_outline_list_view);
+        expandableListView = (NonScrollExpandableListView) view.findViewById(R.id.course_outline_list_view);
         expandableListAdapter = new CourseOutlineListAdapter(getContext(), DummyContent.CHAPTER_LIST);
         expandableListView.setAdapter(expandableListAdapter);
     }
