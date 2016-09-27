@@ -14,46 +14,27 @@
     tools:context="vn.edu.fpt.mola.app.controller.teacher.TimeFrameCreationActivity"
     tools:showIn="@layout/activity_time_frame_creation">
 
-    <android.support.design.widget.TextInputLayout
+    <DatePicker
+        android:id="@+id/startDatePicker"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Start Date">
-        <EditText
-            android:id="@+id/start_date_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="date"/>
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
+        android:layout_height="wrap_content">
+    </DatePicker>
+    <DatePicker
+        android:id="@+id/endDatePicker"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="End Date">
-        <EditText
-            android:id="@+id/end_date_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="date"/>
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
+        android:layout_height="wrap_content">
+    </DatePicker>
+
+    <TimePicker
+        android:id="@+id/fromTimePicker"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="From Time">
-        <EditText
-            android:id="@+id/from_time_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="time"/>
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
+        android:layout_height="wrap_content">
+    </TimePicker>
+    <TimePicker
+        android:id="@+id/toTimePicker"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="To Time">
-        <EditText
-            android:id="@+id/to_time_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="time"/>
-    </android.support.design.widget.TextInputLayout>
+        android:layout_height="wrap_content">
+    </TimePicker>
 
     <RadioGroup
         android:id="@+id/agenda_radio"

@@ -10,6 +10,7 @@ import vn.edu.fpt.mola.app.model.Chapter;
 import vn.edu.fpt.mola.app.model.Course;
 import vn.edu.fpt.mola.app.model.Language;
 import vn.edu.fpt.mola.app.model.Lesson;
+import vn.edu.fpt.mola.app.model.TimeFrame;
 import vn.edu.fpt.mola.app.model.enumerate.CourseStatus;
 import vn.edu.fpt.mola.app.model.enumerate.Degree;
 
@@ -27,6 +28,7 @@ public class DummyContent {
     public static final List<Course> COURSE_LIST = new ArrayList<Course>();
     public static final List<Chapter> CHAPTER_LIST = new ArrayList<Chapter>();
     public static final List<Lesson> LESSON_LIST = new ArrayList<Lesson>();
+    public static final List<TimeFrame> TIME_FRAME_LIST = new ArrayList<>();
 
     /**
      * A map of sample (dummy) items, by ID.
@@ -34,6 +36,7 @@ public class DummyContent {
     public static final Map<Long, Course> COURSE_MAP = new HashMap<Long, Course>();
     public static final Map<Long, Chapter> CHAPTER_MAP = new HashMap<Long, Chapter>();
     public static final Map<Long, Lesson> LESSON_MAP = new HashMap<Long, Lesson>();
+    public static final Map<Long, TimeFrame> TIME_FRAME_MAP = new HashMap<>();
 
     private static final int COUNT = 25;
 
