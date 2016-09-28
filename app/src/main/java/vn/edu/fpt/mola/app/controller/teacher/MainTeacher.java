@@ -50,6 +50,6 @@ public class MainTeacher extends Fragment {
     }
 
     private void goToManageTimeFrame() {
-        startActivity(new Intent(getActivity(), TimeFrameActivity.class));
+        startActivity(new Intent(getActivity(), TimeFrameListActivity.class));
     }
 }

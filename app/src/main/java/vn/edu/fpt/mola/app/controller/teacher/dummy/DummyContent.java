@@ -1,4 +1,4 @@
-package vn.edu.fpt.mola.app.dummy;
+package vn.edu.fpt.mola.app.controller.teacher.dummy;
 
 import java.util.ArrayList;
 import java.util.Date;

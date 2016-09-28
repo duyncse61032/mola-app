@@ -20,7 +20,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import vn.edu.fpt.mola.app.R;
-import vn.edu.fpt.mola.app.dummy.DummyContent;
+import vn.edu.fpt.mola.app.controller.teacher.dummy.DummyContent;
 import vn.edu.fpt.mola.app.model.Chapter;
 import vn.edu.fpt.mola.app.model.Course;
 import vn.edu.fpt.mola.app.model.Lesson;

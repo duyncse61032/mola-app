@@ -12,7 +12,7 @@ import android.widget.RadioGroup;
 import java.util.Date;
 
 import vn.edu.fpt.mola.app.R;
-import vn.edu.fpt.mola.app.dummy.DummyContent;
+import vn.edu.fpt.mola.app.controller.teacher.dummy.DummyContent;
 import vn.edu.fpt.mola.app.model.Course;
 import vn.edu.fpt.mola.app.model.enumerate.Degree;
 

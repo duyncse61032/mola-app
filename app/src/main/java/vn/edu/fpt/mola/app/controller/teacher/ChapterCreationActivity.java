@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import vn.edu.fpt.mola.app.R;
-import vn.edu.fpt.mola.app.dummy.DummyContent;
+import vn.edu.fpt.mola.app.controller.teacher.dummy.DummyContent;
 import vn.edu.fpt.mola.app.model.Chapter;
 
 public class ChapterCreationActivity extends AppCompatActivity {

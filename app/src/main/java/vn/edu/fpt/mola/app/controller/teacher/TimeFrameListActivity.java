@@ -19,43 +19,38 @@ import java.util.List;
 
 import vn.edu.fpt.mola.app.R;
 import vn.edu.fpt.mola.app.controller.teacher.dummy.DummyContent;
-import vn.edu.fpt.mola.app.model.Course;
+import vn.edu.fpt.mola.app.model.TimeFrame;
 
 import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
 
 /**
- * An activity representing a list of CourseList. This activity
+ * An activity representing a list of TimeFrameList. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link CourseDetailActivity} representing
+ * lead to a {@link TimeFrameDetailActivity} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class CourseListActivity extends AppCompatActivity {
+public class TimeFrameListActivity extends AppCompatActivity {
 
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
-    private boolean mTwoPane;
-    private CourseRecyclerViewAdapter mViewAdapter;
+    private static final int CREATE_TIME_FRAME_RESULT = 1;
 
-    private static final int CREATE_COURSE_RESULT = 1;
+    private TimeFrameRecyclerViewAdapter mViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.teacher_activity_course_list);
+        setContentView(R.layout.teacher_activity_timeframe_list);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.create_course_button);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.delete_time_frame_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToCourseCreation();
+                goToCreateTimeFrame();
             }
         });
         // Show the Up button in the action bar.
@@ -64,29 +59,22 @@ public class CourseListActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        View recyclerView = findViewById(R.id.course_list);
+        View recyclerView = findViewById(R.id.timeframe_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
 
-        if (findViewById(R.id.course_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
-            mTwoPane = true;
-        }
     }
 
-    private void goToCourseCreation() {
-        Intent intent = new Intent(this, CourseCreationActivity.class);
-        startActivityForResult(intent, CREATE_COURSE_RESULT);
+    private void goToCreateTimeFrame() {
+        Intent intent = new Intent(this, TimeFrameCreationActivity.class);
+        startActivityForResult(intent, CREATE_TIME_FRAME_RESULT);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case CREATE_COURSE_RESULT:
+            case CREATE_TIME_FRAME_RESULT:
                 if (resultCode == RESULT_OK) {
                     mViewAdapter.notifyDataSetChanged();
                 }
@@ -111,50 +99,41 @@ public class CourseListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        mViewAdapter = new CourseRecyclerViewAdapter(DummyContent.COURSE_LIST);
+        mViewAdapter = new TimeFrameRecyclerViewAdapter(DummyContent.TIME_FRAME_LIST);
         recyclerView.setAdapter(mViewAdapter);
     }
 
-    public class CourseRecyclerViewAdapter
-            extends RecyclerView.Adapter<CourseRecyclerViewAdapter.ViewHolder> {
+    public class TimeFrameRecyclerViewAdapter
+            extends RecyclerView.Adapter<TimeFrameRecyclerViewAdapter.ViewHolder> {
 
-        private final List<Course> mValues;
+        private final List<TimeFrame> mValues;
 
-        public CourseRecyclerViewAdapter(List<Course> items) {
+        public TimeFrameRecyclerViewAdapter(List<TimeFrame> items) {
             mValues = items;
         }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.teacher_course_list_content, parent, false);
+                    .inflate(R.layout.teacher_timeframe_list_content, parent, false);
             return new ViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(Long.toString(mValues.get(position).getId()));
-            holder.mContentView.setText(mValues.get(position).getTitle());
+            holder.mDateView.setText(mValues.get(position).getStartEndDate());
+            holder.mTimeView.setText(mValues.get(position).getFromToTime());
+            holder.mAgendaView.setText(mValues.get(position).getAgenda());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mTwoPane) {
-                        Bundle arguments = new Bundle();
-                        arguments.putLong(CourseDetailFragment.ARG_ITEM_ID, holder.mItem.getId());
-                        CourseDetailFragment fragment = new CourseDetailFragment();
-                        fragment.setArguments(arguments);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.course_detail_container, fragment)
-                                .commit();
-                    } else {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, CourseDetailActivity.class);
-                        intent.putExtra(CourseDetailFragment.ARG_ITEM_ID, holder.mItem.getId());
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, TimeFrameDetailActivity.class);
+                    intent.putExtra(TimeFrameDetailActivity.ARG_ITEM_ID, holder.mItem.getId());
 
-                        context.startActivity(intent);
-                    }
+                    context.startActivity(intent);
                 }
             });
         }
@@ -166,20 +145,22 @@ public class CourseListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            public final TextView mIdView;
-            public final TextView mContentView;
-            public Course mItem;
+            public final TextView mDateView;
+            public final TextView mTimeView;
+            public final TextView mAgendaView;
+            public TimeFrame mItem;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
-                mContentView = (TextView) view.findViewById(R.id.content);
+                mDateView = (TextView) view.findViewById(R.id.date_view);
+                mTimeView = (TextView) view.findViewById(R.id.time_view);
+                mAgendaView = (TextView) view.findViewById(R.id.agenda_view);
             }
 
             @Override
             public String toString() {
-                return super.toString() + " '" + mContentView.getText() + "'";
+                return super.toString() + " '" + mTimeView.getText() + "'";
             }
         }
     }

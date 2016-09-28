@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Locale;
 
 import vn.edu.fpt.mola.app.R;
-import vn.edu.fpt.mola.app.dummy.DummyContent;
+import vn.edu.fpt.mola.app.controller.teacher.dummy.DummyContent;
 import vn.edu.fpt.mola.app.model.TimeFrame;
 
 public class TimeFrameActivity extends AppCompatActivity
@@ -49,7 +49,7 @@ public class TimeFrameActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.create_time_frame_button);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.delete_time_frame_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -88,6 +88,33 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="vn.edu.fpt.mola.app.controller.teacher.TimeFrameActivity" />
         </activity>
+        <activity
+            android:name=".controller.teacher.TimeFrameListActivity"
+            android:label="@string/title_timeframe_list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vn.edu.fpt.mola.app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".controller.teacher.TimeFrameDetailActivity"
+            android:label="@string/title_timeframe_detail"
+            android:parentActivityName=".controller.teacher.TimeFrameListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vn.edu.fpt.mola.app.controller.teacher.TimeFrameListActivity" />
+        </activity>
+        <activity
+            android:name=".controller.teacher.TimeSlotCreationActivity"
+            android:label="@string/title_activity_time_slot_creation"
+            android:parentActivityName=".controller.teacher.TimeFrameDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vn.edu.fpt.mola.app.controller.teacher.TimeFrameDetailActivity" />
+        </activity>
     </application>
 
 </manifest>
