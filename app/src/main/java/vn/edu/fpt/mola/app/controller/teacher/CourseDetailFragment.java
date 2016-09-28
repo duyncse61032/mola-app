@@ -74,7 +74,7 @@ public class CourseDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.course_detail, container, false);
+        View rootView = inflater.inflate(R.layout.teacher_course_detail, container, false);
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
@@ -151,7 +151,7 @@ public class CourseDetailFragment extends Fragment {
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.chapter_list_content, null);
+                convertView = infalInflater.inflate(R.layout.teacher_chapter_list_content, null);
             }
 
             TextView idView = (TextView) convertView.findViewById(R.id.id);
@@ -180,7 +180,7 @@ public class CourseDetailFragment extends Fragment {
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.lesson_list_content, null);
+                convertView = infalInflater.inflate(R.layout.teacher_lesson_list_content, null);
             }
 
             TextView idView = (TextView) convertView.findViewById(R.id.id);
@@ -210,7 +210,7 @@ public class CourseDetailFragment extends Fragment {
         @Override
         public ChapterRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.chapter_list_content, parent, false);
+                    .inflate(R.layout.teacher_chapter_list_content, parent, false);
             return new ChapterRecyclerViewAdapter.ViewHolder(view);
         }
 
