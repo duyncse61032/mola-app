@@ -14,22 +14,38 @@
     tools:context="vn.edu.fpt.mola.app.controller.teacher.TimeFrameCreationActivity"
     tools:showIn="@layout/activity_time_frame_creation">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Date"/>
     <DatePicker
         android:id="@+id/startDatePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </DatePicker>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="End Date"/>
     <DatePicker
         android:id="@+id/endDatePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </DatePicker>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="From Time"/>
     <TimePicker
         android:id="@+id/fromTimePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </TimePicker>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To Time"/>
     <TimePicker
         android:id="@+id/toTimePicker"
         android:layout_width="match_parent"
@@ -45,7 +61,8 @@
             android:id="@+id/daily_agenda_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Daily"/>
+            android:text="Daily"
+            android:checked="true"/>
         <RadioButton
             android:id="@+id/weekly_agenda_radio"
             android:layout_width="wrap_content"

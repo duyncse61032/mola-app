@@ -162,7 +162,7 @@ public class TimeFrameActivity extends AppCompatActivity
 
         Calendar calendar = new GregorianCalendar(newYear, newMonth - 1, 1);
         int maximumDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-        for (int i = 1; i < maximumDay; i++) {
+        for (int i = 1; i <= maximumDay; i++) {
             for (TimeFrame tf :
                     DummyContent.TIME_FRAME_LIST) {
                 boolean inDayRange = tf.getStartDate().toDate().compareTo(calendar.getTime()) <= 0

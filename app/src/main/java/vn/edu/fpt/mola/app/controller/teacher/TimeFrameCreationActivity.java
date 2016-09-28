@@ -120,6 +120,7 @@ public class TimeFrameCreationActivity extends AppCompatActivity {
             if (mThursdayCheckbox.isChecked()) weekDaySum += 32;
             if (mFridayCheckbox.isChecked()) weekDaySum += 64;
             if (mSaturdayCheckbox.isChecked()) weekDaySum += 128;
+            timeFrame.setWeekly(weekDaySum);
         }
         DummyContent.TIME_FRAME_LIST.add(timeFrame);
         timeFrame.setId(DummyContent.TIME_FRAME_LIST.size());
