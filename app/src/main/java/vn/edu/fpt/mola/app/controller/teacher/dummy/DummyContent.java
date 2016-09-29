@@ -54,7 +54,7 @@ public class DummyContent {
             addChapter(createDummyChapter("Chapter Example", i));
             addCourse(createDummyCourse("Course Example", i));
         }
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 10; i++) {
             addMeeting(createDummyMeeting(i));
         }
     }
