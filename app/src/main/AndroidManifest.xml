@@ -36,7 +36,7 @@
         </activity>
         <activity
             android:name=".controller.teacher.CourseListActivity"
-            android:label="@string/title_course_list"
+            android:label="@string/title_manage_course_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -45,7 +45,7 @@
         </activity>
         <activity
             android:name=".controller.teacher.CourseDetailActivity"
-            android:label="@string/title_course_detail"
+            android:label="@string/title_manage_course_detail"
             android:parentActivityName=".controller.teacher.CourseListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -72,7 +72,7 @@
         </activity>
         <activity
             android:name=".controller.teacher.TimeFrameActivity"
-            android:label="@string/title_activity_time_frame"
+            android:label="@string/title_manage_activity_time_frame"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -90,7 +90,7 @@
         </activity>
         <activity
             android:name=".controller.teacher.TimeFrameListActivity"
-            android:label="@string/title_timeframe_list"
+            android:label="@string/title_manage_time_frame_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -99,7 +99,7 @@
         </activity>
         <activity
             android:name=".controller.teacher.TimeFrameDetailActivity"
-            android:label="@string/title_timeframe_detail"
+            android:label="@string/title_mange_time_frame_detail"
             android:parentActivityName=".controller.teacher.TimeFrameListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -135,7 +135,7 @@
         </activity>
         <activity
             android:name=".controller.teacher.MeetingListActivity"
-            android:label="@string/title_meeting_list"
+            android:label="@string/title_teaching_meeting_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -144,7 +144,7 @@
         </activity>
         <activity
             android:name=".controller.teacher.MeetingDetailActivity"
-            android:label="@string/title_meeting_detail"
+            android:label="@string/title_teaching_meeting_detail"
             android:parentActivityName=".controller.teacher.MeetingListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
