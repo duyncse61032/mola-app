@@ -133,6 +133,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="vn.edu.fpt.mola.app.controller.teacher.ChapterDetailActivity" />
         </activity>
+        <activity
+            android:name=".controller.teacher.MeetingListActivity"
+            android:label="@string/title_meeting_list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vn.edu.fpt.mola.app.MainActivity" />
+        </activity>
+        <activity
+            android:name=".controller.teacher.MeetingDetailActivity"
+            android:label="@string/title_meeting_detail"
+            android:parentActivityName=".controller.teacher.MeetingListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vn.edu.fpt.mola.app.controller.teacher.MeetingListActivity" />
+        </activity>
     </application>
 
 </manifest>

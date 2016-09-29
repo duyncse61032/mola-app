@@ -6,14 +6,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import vn.edu.fpt.mola.app.R;
 
 public class MainTeacher extends Fragment {
 
-    private LinearLayout mManageCourseLine;
+    private View mManageCourseLine;
     private View mManageTimeFrameLine;
+    private View mManageMeetingLine;
 
     public MainTeacher() {
         // Required empty public constructor
@@ -25,8 +25,9 @@ public class MainTeacher extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_main_teacher, container, false);
 
-        mManageCourseLine = (LinearLayout) rootView.findViewById(R.id.manage_course_line);
-        mManageTimeFrameLine = (View) rootView.findViewById(R.id.manage_time_frame_line);
+        mManageCourseLine = rootView.findViewById(R.id.manage_course_line);
+        mManageTimeFrameLine = rootView.findViewById(R.id.manage_time_frame_line);
+        mManageMeetingLine = rootView.findViewById(R.id.manage_meeting_line);
 
 
         mManageCourseLine.setOnClickListener(new View.OnClickListener() {
@@ -37,12 +38,21 @@ public class MainTeacher extends Fragment {
         });
         mManageTimeFrameLine.setOnClickListener(new View.OnClickListener() {
             @Override
+            public void onClick(View view) {goToManageTimeFrame();
+            }
+        });
+        mManageMeetingLine.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
-                goToManageTimeFrame();
+                goToManageMeeting();
             }
         });
 
         return rootView;
+    }
+
+    private void goToManageMeeting() {
+        startActivity(new Intent(getActivity(), MeetingListActivity.class));
     }
 
     private void goToManageCourse() {

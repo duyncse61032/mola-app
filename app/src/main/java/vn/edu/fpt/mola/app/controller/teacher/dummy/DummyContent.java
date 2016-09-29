@@ -7,12 +7,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import vn.edu.fpt.mola.app.model.Chapter;
 import vn.edu.fpt.mola.app.model.Course;
 import vn.edu.fpt.mola.app.model.Language;
 import vn.edu.fpt.mola.app.model.Lesson;
+import vn.edu.fpt.mola.app.model.Meeting;
 import vn.edu.fpt.mola.app.model.TimeFrame;
+import vn.edu.fpt.mola.app.model.UserPrincipal;
 import vn.edu.fpt.mola.app.model.enumerate.CourseStatus;
 import vn.edu.fpt.mola.app.model.enumerate.Degree;
 
@@ -31,6 +34,7 @@ public class DummyContent {
     public static final List<Chapter> CHAPTER_LIST = new ArrayList<Chapter>();
     public static final List<Lesson> LESSON_LIST = new ArrayList<Lesson>();
     public static final List<TimeFrame> TIME_FRAME_LIST = new ArrayList<>();
+    public static final List<Meeting> MEETINGS_LIST = new ArrayList<>();
 
     /**
      * A map of sample (dummy) items, by ID.
@@ -39,21 +43,33 @@ public class DummyContent {
     public static final Map<Long, Chapter> CHAPTER_MAP = new HashMap<Long, Chapter>();
     public static final Map<Long, Lesson> LESSON_MAP = new HashMap<Long, Lesson>();
     public static final Map<Long, TimeFrame> TIME_FRAME_MAP = new HashMap<>();
+    public static final Map<Long, Meeting> MEETING_MAP = new HashMap<>();
 
     private static final int COUNT = 25;
 
     static {
         // Add some sample items.
         for (int i = 1; i <= COUNT; i++) {
-            addCourse(createDummyCourse("Course", i));
-            addLesson(createDummyLesson("Lesson", i));
-            addChapter(createDummyChapter("Chapter", i));
+            addLesson(createDummyLesson("Lesson Example", i));
+            addChapter(createDummyChapter("Chapter Example", i));
+            addCourse(createDummyCourse("Course Example", i));
         }
+        for (int i = 1; i <= 5; i++) {
+            addMeeting(createDummyMeeting(i));
+        }
+    }
+
+    private static void addMeeting(Meeting meeting) {
+        MEETINGS_LIST.add(meeting);
+        MEETING_MAP.put(meeting.getId(), meeting);
     }
 
     private static void addCourse(Course course) {
         COURSE_LIST.add(course);
         COURSE_MAP.put(course.getId(), course);
+        for (Chapter c : CHAPTER_LIST) {
+            course.addChapter(c);
+        }
     }
 
     private static void addChapter(Chapter chapter) {
@@ -75,6 +91,40 @@ public class DummyContent {
             DummyItem item) {
         dummyItemList.add(item);
         dummyItemMap.put(item.id, item);
+    }
+
+    private static Meeting createDummyMeeting(int i) {
+        Random random = new Random();
+        int coursePosition = random.nextInt(COURSE_LIST.size());
+        Course course = COURSE_LIST.get(coursePosition);
+        Chapter chapter = new Chapter();
+        Lesson lesson = new Lesson();
+        if (course.getChapterList().size() > 0) {
+            int chapterPosition = random.nextInt(course.getChapterList().size());
+            chapter = course.getChapterList().get(chapterPosition);
+            if (chapter.getLessonList().size() > 0) {
+                int lessonPosition = random.nextInt(chapter.getLessonList().size());
+                lesson = chapter.getLessonList().get(lessonPosition);
+            }
+        }
+
+        UserPrincipal learner = new UserPrincipal();
+        learner.setFirstName("Adam");
+        learner.setLastName("Smith");
+        learner.setUsername("adam.smith");
+        UserPrincipal teacher = new UserPrincipal();
+        teacher.setFirstName("Same");
+        teacher.setLastName("Will");
+        teacher.setUsername("same.will");
+
+        Meeting meeting = new Meeting();
+        meeting.setId(i);
+        meeting.setCourse(course);
+        meeting.setLesson(lesson);
+        meeting.setLearner(learner);
+        meeting.setTeacher(teacher);
+
+        return meeting;
     }
 
     private static Course createDummyCourse(String name, int position) {

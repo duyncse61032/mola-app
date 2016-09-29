@@ -26,4 +26,6 @@
     <string name="title_activity_time_slot_creation">TimeSlotCreationActivity</string>
     <string name="title_activity_chapter_detail">ChapterDetailActivity</string>
     <string name="title_activity_lesson_creation">LessonCreationActivity</string>
+    <string name="title_meeting_list">MeetingList</string>
+    <string name="title_meeting_detail">Meeting Detail</string>
 </resources>

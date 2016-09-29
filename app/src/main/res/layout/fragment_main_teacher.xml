@@ -36,6 +36,7 @@
             android:text="Manage Time Frame"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/manage_meeting_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
