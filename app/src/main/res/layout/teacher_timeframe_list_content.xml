@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="horizontal">
 
     <ImageView
@@ -18,7 +20,6 @@
             android:id="@+id/date_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
             android:textAppearance="?attr/textAppearanceListItem"
             android:text="Date View"/>
 
@@ -26,16 +27,12 @@
             android:id="@+id/time_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:textAppearance="?attr/textAppearanceListItem"
             android:text="Time View"/>
 
         <TextView
             android:id="@+id/agenda_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:textAppearance="?attr/textAppearanceListItem"
             android:text="Agenda View"/>
     </LinearLayout>
 </LinearLayout>
