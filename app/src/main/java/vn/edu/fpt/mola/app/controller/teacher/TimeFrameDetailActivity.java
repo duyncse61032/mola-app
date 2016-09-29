@@ -95,7 +95,7 @@ public class TimeFrameDetailActivity extends AppCompatActivity {
                 if (appBarLayout != null) {
                     appBarLayout.setTitle(mTimeFrame.toString());
                 }
-                
+
                 ((TextView) findViewById(R.id.date_view)).setText(mTimeFrame.getStartEndDate());
                 ((TextView) findViewById(R.id.time_view)).setText(mTimeFrame.getFromToTime());
                 ((TextView) findViewById(R.id.agenda_view)).setText(mTimeFrame.getAgenda());

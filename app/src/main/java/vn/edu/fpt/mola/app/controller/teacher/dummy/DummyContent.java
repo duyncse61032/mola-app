@@ -1,5 +1,7 @@
 package vn.edu.fpt.mola.app.controller.teacher.dummy;
 
+import org.joda.time.Duration;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -105,7 +107,7 @@ public class DummyContent {
         l.setId(position);
         l.setTitle(name);
         l.setDescription(makeDetails("Lesson", position));
-        l.setDuration(60 * 15);
+        l.setDuration(Duration.standardMinutes(15));
         return l;
     }
 

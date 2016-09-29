@@ -1,7 +1,9 @@
 package vn.edu.fpt.mola.app.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import vn.edu.fpt.mola.app.model.enumerate.CourseStatus;
 import vn.edu.fpt.mola.app.model.enumerate.Degree;
@@ -17,9 +19,11 @@ public class Course implements Serializable
     private String title;
     private String topic;
     private Language language;
+    private List<Chapter> chapterList;
 
     public Course()
     {
+        chapterList = new ArrayList<>();
     }
 
     public long getId()
@@ -100,5 +104,21 @@ public class Course implements Serializable
     public void setLanguage(Language language)
     {
         this.language = language;
+    }
+
+    public List<Chapter> getChapterList() {
+        return chapterList;
+    }
+
+    public void setChapterList(List<Chapter> chapterList) {
+        this.chapterList = chapterList;
+    }
+
+    public void addChapter(Chapter chapter) {
+        chapterList.add(chapter);
+    }
+
+    public void removeChapter(Chapter chapter) {
+        chapterList.remove(chapter);
     }
 }

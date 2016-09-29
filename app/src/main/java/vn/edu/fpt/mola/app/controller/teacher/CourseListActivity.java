@@ -33,11 +33,6 @@ import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
  */
 public class CourseListActivity extends AppCompatActivity {
 
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
-    private boolean mTwoPane;
     private CourseRecyclerViewAdapter mViewAdapter;
 
     private static final int CREATE_COURSE_RESULT = 1;
@@ -67,14 +62,6 @@ public class CourseListActivity extends AppCompatActivity {
         View recyclerView = findViewById(R.id.course_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
-
-        if (findViewById(R.id.course_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
-            mTwoPane = true;
-        }
     }
 
     private void goToCourseCreation() {
@@ -140,21 +127,11 @@ public class CourseListActivity extends AppCompatActivity {
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mTwoPane) {
-                        Bundle arguments = new Bundle();
-                        arguments.putLong(CourseDetailFragment.ARG_ITEM_ID, holder.mItem.getId());
-                        CourseDetailFragment fragment = new CourseDetailFragment();
-                        fragment.setArguments(arguments);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.course_detail_container, fragment)
-                                .commit();
-                    } else {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, CourseDetailActivity.class);
-                        intent.putExtra(CourseDetailFragment.ARG_ITEM_ID, holder.mItem.getId());
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, CourseDetailActivity.class);
+                    intent.putExtra(CourseDetailActivity.ARG_COURSE_ID, holder.mItem.getId());
 
-                        context.startActivity(intent);
-                    }
+                    context.startActivity(intent);
                 }
             });
         }

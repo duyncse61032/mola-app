@@ -15,6 +15,7 @@ import vn.edu.fpt.mola.app.model.Chapter;
 public class ChapterCreationActivity extends AppCompatActivity {
 
     public static final String ARG_ITEM_ID = "item_id";
+    public static final String NEW_CHAPTER = "vn.edu.fpt.mola.app.controller.teacher.ChapterCreationActivity.NewChapter";
 
     private Chapter mItem;
 
@@ -62,15 +63,28 @@ public class ChapterCreationActivity extends AppCompatActivity {
         }
     }
 
+    private Chapter createChapter() {
+        Chapter chapter = new Chapter();
+        chapter.setTitle(mTitleText.getText().toString());
+        chapter.setDescription(mDescriptionText.getText().toString());
+        return chapter;
+    }
+
     private void saveAndAddChapter() {
-        this.setResult(RESULT_OK);
-        Intent intent = getIntent();
+        Chapter chapter = createChapter();
+        Intent data = new Intent();
+        data.putExtra(NEW_CHAPTER, chapter);
+        this.setResult(RESULT_OK, data);
         this.finish();
+        Intent intent = getIntent();
         startActivity(intent);
     }
 
     private void saveChapter() {
-        this.setResult(RESULT_OK);
+        Chapter chapter = createChapter();
+        Intent data = new Intent();
+        data.putExtra(NEW_CHAPTER, chapter);
+        this.setResult(RESULT_OK, data);
         this.finish();
     }
 

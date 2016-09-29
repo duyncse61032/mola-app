@@ -115,6 +115,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="vn.edu.fpt.mola.app.controller.teacher.TimeFrameDetailActivity" />
         </activity>
+        <activity
+            android:name=".controller.teacher.ChapterDetailActivity"
+            android:label="@string/title_activity_chapter_detail"
+            android:parentActivityName=".controller.teacher.CourseDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vn.edu.fpt.mola.app.controller.teacher.CourseDetailActivity" />
+        </activity>
+        <activity
+            android:name=".controller.teacher.LessonCreationActivity"
+            android:label="@string/title_activity_lesson_creation"
+            android:parentActivityName=".controller.teacher.ChapterDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vn.edu.fpt.mola.app.controller.teacher.ChapterDetailActivity" />
+        </activity>
     </application>
 
 </manifest>

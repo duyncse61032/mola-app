@@ -1,5 +1,7 @@
 package vn.edu.fpt.mola.app.model;
 
+import org.joda.time.Duration;
+
 import java.io.Serializable;
 
 public class Lesson implements Serializable
@@ -7,7 +9,7 @@ public class Lesson implements Serializable
     private static final long serialVersionUID = 1L;
     private long id;
     private String description;
-    private int duration;
+    private Duration duration;
     private String title;
 
     public Lesson()
@@ -34,12 +36,12 @@ public class Lesson implements Serializable
         this.description = description;
     }
 
-    public int getDuration()
+    public Duration getDuration()
     {
         return this.duration;
     }
 
-    public void setDuration(int duration)
+    public void setDuration(Duration duration)
     {
         this.duration = duration;
     }
