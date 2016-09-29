@@ -1,8 +1,9 @@
 package vn.edu.fpt.mola.app.model;
 
+import org.joda.time.LocalDate;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import vn.edu.fpt.mola.app.model.enumerate.CourseStatus;
@@ -12,7 +13,7 @@ public class Course implements Serializable
 {
     private static final long serialVersionUID = 1L;
     private long id;
-    private Date createDate;
+    private LocalDate createDate;
     private Degree degree;
     private String description;
     private CourseStatus state;
@@ -36,14 +37,18 @@ public class Course implements Serializable
         this.id = id;
     }
 
-    public Date getCreateDate()
+    public LocalDate getCreateDate()
     {
         return this.createDate;
     }
 
-    public void setCreateDate(Date createDate)
+    public void setCreateDate(LocalDate createDate)
     {
         this.createDate = createDate;
+    }
+
+    public String getCreateDateString() {
+        return createDate == null ? "" : createDate.toString("dd/MM/yyyy");
     }
 
     public Degree getDegree()

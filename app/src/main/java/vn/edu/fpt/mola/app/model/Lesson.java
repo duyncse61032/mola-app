@@ -1,6 +1,8 @@
 package vn.edu.fpt.mola.app.model;
 
-import org.joda.time.Duration;
+import org.joda.time.Period;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
 
 import java.io.Serializable;
 
@@ -8,9 +10,8 @@ public class Lesson implements Serializable
 {
     private static final long serialVersionUID = 1L;
     private long id;
-    private String description;
-    private Duration duration;
     private String title;
+    private Period period;
 
     public Lesson()
     {
@@ -26,24 +27,14 @@ public class Lesson implements Serializable
         this.id = id;
     }
 
-    public String getDescription()
+    public Period getPeriod()
     {
-        return this.description;
+        return this.period;
     }
 
-    public void setDescription(String description)
+    public void setPeriod(Period period)
     {
-        this.description = description;
-    }
-
-    public Duration getDuration()
-    {
-        return this.duration;
-    }
-
-    public void setDuration(Duration duration)
-    {
-        this.duration = duration;
+        this.period = period;
     }
 
     public String getTitle()
@@ -54,5 +45,21 @@ public class Lesson implements Serializable
     public void setTitle(String title)
     {
         this.title = title;
+    }
+
+    public String getDurationString() {
+        if (period == null) {
+            return "";
+        }
+        PeriodFormatter hm = new PeriodFormatterBuilder()
+                .printZeroAlways()
+                .minimumPrintedDigits(2)
+                .appendHours()
+                .appendSeparator("h")
+                .appendMinutes()
+                .appendSeparator("m")
+                .toFormatter();
+
+        return hm.print(this.period);
     }
 }

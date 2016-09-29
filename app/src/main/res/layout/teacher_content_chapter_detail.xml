@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_chapter_detail"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -15,7 +15,8 @@
     tools:showIn="@layout/teacher_activity_chapter_detail">
 
     <TextView
-        android:id="@+id/chapter_detail"
+        android:id="@+id/description_view"
+        android:text="No Description"
         style="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,5 +30,5 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/teacher_chapter_list_content" />
+        tools:listitem="@layout/teacher_lesson_list_content" />
 </LinearLayout>

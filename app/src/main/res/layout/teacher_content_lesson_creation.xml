@@ -24,16 +24,35 @@
             android:layout_height="wrap_content"
             android:inputType="text"/>
     </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Duration (minutes)">
-        <EditText
-            android:id="@+id/duration_text"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"/>
-    </android.support.design.widget.TextInputLayout>
+            android:layout_weight="1"
+            android:hint="Duration (hours)">
+            <EditText
+                android:id="@+id/hour_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Duration (minutes)">
+            <EditText
+                android:id="@+id/minute_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/save_button"

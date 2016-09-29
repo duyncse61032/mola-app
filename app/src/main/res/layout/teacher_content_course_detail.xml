@@ -7,7 +7,40 @@
     tools:context="vn.edu.fpt.mola.app.controller.teacher.CourseDetailActivity" >
 
     <TextView
-        android:id="@+id/course_detail"
+        android:id="@+id/topic_view"
+        android:text="No Topic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        style="?android:attr/textAppearanceLarge"/>
+
+    <TextView
+        android:id="@+id/degree_view"
+        android:text="No Degree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        style="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/create_date_view"
+        android:text="No Create Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        style="?android:attr/textAppearanceLarge"/>
+
+    <TextView
+        android:id="@+id/status_view"
+        android:text="No Status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        style="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/description_view"
+        android:text="No Description"
         style="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

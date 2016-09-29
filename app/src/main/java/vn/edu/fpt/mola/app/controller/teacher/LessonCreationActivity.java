@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import org.joda.time.Duration;
+import org.joda.time.Period;
 
 import vn.edu.fpt.mola.app.R;
 import vn.edu.fpt.mola.app.model.Lesson;
@@ -18,7 +18,8 @@ public class LessonCreationActivity extends AppCompatActivity {
     public static final String NEW_LESSON = "vn.edu.fpt.mola.app.controller.teacher.LessonCreationActivity.NewLesson";
 
     private EditText mTitleText;
-    private EditText mDurationText;
+    private EditText mHourText;
+    private EditText mMinuteText;
     private Button mSaveButton;
     private Button mSaveAndAddButton;
 
@@ -32,7 +33,8 @@ public class LessonCreationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mTitleText = (EditText) findViewById(R.id.title_text);
-        mDurationText = (EditText) findViewById(R.id.duration_text);
+        mHourText = (EditText) findViewById(R.id.hour_text);
+        mMinuteText = (EditText) findViewById(R.id.minute_text);
         mSaveButton = (Button) findViewById(R.id.save_button);
         mSaveAndAddButton = (Button) findViewById(R.id.save_add_another_button);
 
@@ -54,8 +56,21 @@ public class LessonCreationActivity extends AppCompatActivity {
     private Lesson createLesson() {
         Lesson lesson = new Lesson();
         lesson.setTitle(mTitleText.getText().toString());
-        long minutes = Long.parseLong(mDurationText.getText().toString());
-        Duration duration = Duration.standardMinutes(minutes);
+        int hours = 0;
+        try {
+            hours = Integer.parseInt(mHourText.getText().toString());
+        } catch (NumberFormatException e) { }
+        int minutes = 0;
+        try {
+            minutes = Integer.parseInt(mMinuteText.getText().toString());
+        } catch (NumberFormatException e) { }
+        Period p = new Period(
+                hours,
+                minutes,
+                0, // second
+                0 // millis
+        );
+        lesson.setPeriod(p);
         return lesson;
     }
 

@@ -22,6 +22,7 @@ import vn.edu.fpt.mola.app.R;
 import vn.edu.fpt.mola.app.controller.teacher.dummy.DummyContent;
 import vn.edu.fpt.mola.app.model.Chapter;
 import vn.edu.fpt.mola.app.model.Course;
+import vn.edu.fpt.mola.app.model.enumerate.CourseStatus;
 
 /**
  * An activity representing a single Course detail screen. This
@@ -32,7 +33,8 @@ import vn.edu.fpt.mola.app.model.Course;
 public class CourseDetailActivity extends AppCompatActivity {
 
     public static final String ARG_COURSE_ID = "course_id";
-    private static final int CREATE_CHAPTER_RESULT = 1;
+    private static final int EDIT_COURSE_RESULT = 1;
+    private static final int CREATE_CHAPTER_RESULT = 2;
     private Course mCourse;
     private ChapterRecyclerViewAdapter mViewAdapter;
 
@@ -73,7 +75,12 @@ public class CourseDetailActivity extends AppCompatActivity {
 
                 // Show the dummy content as text in a TextView.
                 if (mCourse != null) {
-                    ((TextView) findViewById(R.id.course_detail)).setText(mCourse.getDescription());
+                    ((TextView) findViewById(R.id.topic_view)).setText(mCourse.getTopic());
+                    ((TextView) findViewById(R.id.degree_view)).setText(mCourse.getDegree().toString());
+                    ((TextView) findViewById(R.id.description_view)).setText(mCourse.getDescription());
+                    ((TextView) findViewById(R.id.create_date_view)).setText(mCourse.getCreateDateString());
+                    ((TextView) findViewById(R.id.status_view)).setText(mCourse.getState().toString());
+
 
                     View recyclerView = findViewById(R.id.chapter_list);
                     assert recyclerView != null;
@@ -86,11 +93,39 @@ public class CourseDetailActivity extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CourseDetailActivity.this, CourseCreationActivity.class);
-                intent.putExtra(CourseCreationActivity.ARG_ITEM_ID, mCourse.getId());
-                startActivity(intent);
+                goToCourseEdition();
             }
         });
+
+        FloatingActionButton deleteButton = (FloatingActionButton) findViewById(R.id.delete_button);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteCourse();
+            }
+        });
+
+        FloatingActionButton openButton = (FloatingActionButton) findViewById(R.id.open_button);
+        openButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCourse();
+            }
+        });
+
+        FloatingActionButton closeButton = (FloatingActionButton) findViewById(R.id.close_button);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                closeCourse();
+            }
+        });
+
+        if (mCourse.getState() == CourseStatus.DRAFT || mCourse.getState() == CourseStatus.CLOSED) {
+            closeButton.setVisibility(View.INVISIBLE);
+        } else {
+            openButton.setVisibility(View.INVISIBLE);
+        }
 
         FloatingActionButton createChapterButton = (FloatingActionButton) findViewById(R.id.create_chapter_button);
         createChapterButton.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +134,31 @@ public class CourseDetailActivity extends AppCompatActivity {
                 goToChapterCreation();
             }
         });
+    }
+
+    private void closeCourse() {
+        mCourse.setState(CourseStatus.CLOSED);
+        this.finish();
+        startActivity(getIntent());
+    }
+
+    private void openCourse() {
+        mCourse.setState(CourseStatus.OPENED);
+        this.finish();
+        startActivity(getIntent());
+    }
+
+
+    private void deleteCourse() {
+        DummyContent.COURSE_LIST.remove(mCourse);
+        DummyContent.COURSE_MAP.remove(mCourse);
+        this.finish();
+    }
+
+    private void goToCourseEdition() {
+        Intent intent = new Intent(CourseDetailActivity.this, CourseCreationActivity.class);
+        intent.putExtra(CourseCreationActivity.ARG_ITEM_ID, mCourse.getId());
+        startActivityForResult(intent, EDIT_COURSE_RESULT);
     }
 
     private void goToChapterCreation() {
@@ -110,12 +170,17 @@ public class CourseDetailActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
+            case EDIT_COURSE_RESULT:
+                this.finish();
+                startActivity(getIntent());
+                break;
             case CREATE_CHAPTER_RESULT:
                 if (resultCode == RESULT_OK) {
                     Chapter createdChapter = (Chapter) data.getSerializableExtra(ChapterCreationActivity.NEW_CHAPTER);
                     mCourse.addChapter(createdChapter);
                     mViewAdapter.notifyDataSetChanged();
                 }
+                break;
         }
     }
 
@@ -144,10 +209,10 @@ public class CourseDetailActivity extends AppCompatActivity {
     public class ChapterRecyclerViewAdapter
             extends RecyclerView.Adapter<ChapterRecyclerViewAdapter.ViewHolder> {
 
-        private final List<Chapter> mValues;
+        private final List<Chapter> mChapterList;
 
         public ChapterRecyclerViewAdapter(List<Chapter> items) {
-            mValues = items;
+            mChapterList = items;
         }
 
         @Override
@@ -159,9 +224,8 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ChapterRecyclerViewAdapter.ViewHolder holder, final int position) {
-            holder.mChapter = mValues.get(position);
-            holder.mIdView.setText(Long.toString(mValues.get(position).getId()));
-            holder.mContentView.setText(mValues.get(position).getTitle());
+            holder.mChapter = mChapterList.get(position);
+            holder.mTitleView.setText(mChapterList.get(position).getTitle());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -179,25 +243,23 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return mValues.size();
+            return mChapterList.size();
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            public final TextView mIdView;
-            public final TextView mContentView;
+            public final TextView mTitleView;
             public Chapter mChapter;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
-                mContentView = (TextView) view.findViewById(R.id.content);
+                mTitleView = (TextView) view.findViewById(R.id.title_view);
             }
 
             @Override
             public String toString() {
-                return super.toString() + " '" + mContentView.getText() + "'";
+                return super.toString() + " '" + mTitleView.getText() + "'";
             }
         }
     }

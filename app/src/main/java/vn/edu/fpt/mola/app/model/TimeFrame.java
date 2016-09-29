@@ -97,7 +97,7 @@ public class TimeFrame {
     }
 
     public String getStartEndDate() {
-        return startDate.toString("MM/dd/yyyy") + " - " + endDate.toString("MM/dd/yyyy");
+        return startDate.toString("dd/MM/yyyy") + " - " + endDate.toString("dd/MM/yyyy");
     }
 
     public String getFromToTime() {

@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
-import java.util.Date;
+import org.joda.time.LocalDate;
 
 import vn.edu.fpt.mola.app.R;
 import vn.edu.fpt.mola.app.controller.teacher.dummy.DummyContent;
@@ -19,7 +19,7 @@ import vn.edu.fpt.mola.app.model.enumerate.Degree;
 public class CourseCreationActivity extends AppCompatActivity {
 
     public static final String ARG_ITEM_ID = "item_id";
-    private Course mItem;
+    private Course mCourse;
 
     private EditText mTitleText;
     private EditText mTopicText;
@@ -63,11 +63,11 @@ public class CourseCreationActivity extends AppCompatActivity {
 
         long courseId = getIntent().getLongExtra(ARG_ITEM_ID, -1);
         if (courseId != -1) {
-            mItem = DummyContent.COURSE_MAP.get(courseId);
-            mTitleText.setText(mItem.getTitle());
-            mTopicText.setText(mItem.getTopic());
-            mDescriptionText.setText(mItem.getDescription());
-            switch (mItem.getDegree()) {
+            mCourse = DummyContent.COURSE_MAP.get(courseId);
+            mTitleText.setText(mCourse.getTitle());
+            mTopicText.setText(mCourse.getTopic());
+            mDescriptionText.setText(mCourse.getDescription());
+            switch (mCourse.getDegree()) {
                 case BEGINNER:
                     mDegreeRadio.check(R.id.beginner_degree_radio);
                     break;
@@ -82,12 +82,20 @@ public class CourseCreationActivity extends AppCompatActivity {
         }
     }
     private void createCourse() {
-        Course c = new Course();
-        c.setId(DummyContent.COURSE_LIST.size() + 1);
+        Course c;
+
+        if (mCourse != null) {
+            c = mCourse;
+        }
+        else{
+            c = new Course();
+            c.setId(DummyContent.COURSE_LIST.size() + 1);
+        }
+
         c.setTitle(mTitleText.getText().toString());
         c.setTopic(mTopicText.getText().toString());
         c.setDescription(mDescriptionText.getText().toString());
-        c.setCreateDate(new Date());
+        c.setCreateDate(new LocalDate());
         switch (mDegreeRadio.getCheckedRadioButtonId()) {
             case R.id.beginner_degree_radio:
                 c.setDegree(Degree.BEGINNER);
@@ -99,8 +107,11 @@ public class CourseCreationActivity extends AppCompatActivity {
                 c.setDegree(Degree.ADVANCED);
                 break;
         }
-        DummyContent.COURSE_LIST.add(c);
-        DummyContent.COURSE_MAP.put(c.getId(), c);
+
+        if (mCourse == null) {
+            DummyContent.COURSE_LIST.add(c);
+            DummyContent.COURSE_MAP.put(c.getId(), c);
+        }
     }
 
     private void saveAndAddCourse() {

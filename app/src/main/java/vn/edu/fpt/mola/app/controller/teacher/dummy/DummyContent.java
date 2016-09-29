@@ -1,9 +1,9 @@
 package vn.edu.fpt.mola.app.controller.teacher.dummy;
 
-import org.joda.time.Duration;
+import org.joda.time.LocalDate;
+import org.joda.time.Period;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -84,7 +84,7 @@ public class DummyContent {
         if (position % 3 == 0) c.setDegree(Degree.BEGINNER);
         else if (position % 3 == 1) c.setDegree(Degree.INTERMEDIATE);
         else if (position % 3 == 2) c.setDegree(Degree.ADVANCED);
-        c.setCreateDate(new Date());
+        c.setCreateDate(new LocalDate());
         Language english = new Language();
         english.setId(57);
         english.setEnglishName("English");
@@ -106,8 +106,7 @@ public class DummyContent {
         Lesson l = new Lesson();
         l.setId(position);
         l.setTitle(name);
-        l.setDescription(makeDetails("Lesson", position));
-        l.setDuration(Duration.standardMinutes(15));
+        l.setPeriod(new Period(0, 15, 0, 0));
         return l;
     }
 

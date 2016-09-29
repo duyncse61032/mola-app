@@ -54,14 +54,14 @@ public class ChapterDetailActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             if (getIntent().hasExtra(ARG_CHAPTER_ID)) {
                 Course course = DummyContent.COURSE_MAP.get(getIntent().getLongExtra(ARG_COURSE_ID, -1));
-                mChapter = (Chapter) course.getChapterList().get(getIntent().getIntExtra(ARG_CHAPTER_ID, -1));
+                mChapter = course.getChapterList().get(getIntent().getIntExtra(ARG_CHAPTER_ID, -1));
                 CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
                 if (appBarLayout != null) {
                     appBarLayout.setTitle(mChapter.getTitle());
                 }
 
                 if (mChapter != null) {
-                    ((TextView) findViewById(R.id.chapter_detail)).setText(mChapter.getDescription());
+                    ((TextView) findViewById(R.id.description_view)).setText(mChapter.getDescription());
 
                     View recyclerView = findViewById(R.id.lesson_list);
                     assert recyclerView != null;
@@ -108,10 +108,10 @@ public class ChapterDetailActivity extends AppCompatActivity {
     public class LessonRecyclerViewAdapter
             extends RecyclerView.Adapter<LessonRecyclerViewAdapter.ViewHolder> {
 
-        private final List<Lesson> mValues;
+        private final List<Lesson> mLessonList;
 
-        public LessonRecyclerViewAdapter(List<Lesson> mValues) {
-            this.mValues = mValues;
+        public LessonRecyclerViewAdapter(List<Lesson> lessonList) {
+            this.mLessonList = lessonList;
         }
 
         @Override
@@ -123,35 +123,33 @@ public class ChapterDetailActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            holder.mItem = mValues.get(position);
-            holder.mIdView.setText(Long.toString(mValues.get(position).getId()));
-            holder.mContentView.setText(mValues.get(position).getTitle());
-
-
+            holder.mLesson = mLessonList.get(position);
+            holder.mTitleView.setText(mLessonList.get(position).getTitle());
+            holder.mDurationView.setText(mLessonList.get(position).getDurationString());
         }
 
         @Override
         public int getItemCount() {
-            return mValues.size();
+            return mLessonList.size();
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
 
             public final View mView;
-            public final TextView mIdView;
-            public final TextView mContentView;
-            public Lesson mItem;
+            public final TextView mTitleView;
+            public final TextView mDurationView;
+            public Lesson mLesson;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
-                mContentView = (TextView) view.findViewById(R.id.content);
+                mTitleView = (TextView) view.findViewById(R.id.title_view);
+                mDurationView = (TextView) view.findViewById(R.id.duration_view);
             }
 
             @Override
             public String toString() {
-                return super.toString() + " '" + mContentView.getText() + "'";
+                return super.toString() + " '" + mTitleView.getText() + "'";
             }
         }
     }
